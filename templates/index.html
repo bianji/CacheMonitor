@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Redis-Monitor</title>
+    <script src={{ url_for("static",filename="socket.io.min.js")}}></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src={{ url_for("static",filename="controller.js")}}></script>
+    <script src="http://front.qdingnet.com/public/echarts/build/dist/echarts-all.js"></script>
+    <link rel="stylesheet" href="http://front.qdingnet.com/public/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cache-Monitor</a>
+        <form class="navbar-form navbar-right">
+            <div class="form-gourp">
+                <select id="server" class="form-control">
+                    <option>请选择服务地址</option>
+                </select>
+            </div>
+        </form>
+        <form class="navbar-form navbar-right">
+            <div class="form-gourp">
+                <select id="s_type" class="form-control">
+                    <option value="redis">redis</option>
+                    <option value="memcache">memcache</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</nav>
+</div>
+<div class="container">
+    <div class="row">
+        <div style="height: 300px" id="qps_pic">
+我是图片
+        </div>
+    </div>
+    <div class="row">
+        <h3 class="text-info">实时数据</h3>
+        <table id="table" class="table table-bordered col-md-5 table-striped">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>用户占用CPU</th>
+                    <th>系统占用CPU</th>
+                    <th>客户端连接</th>
+                    <th>阻塞客户端连接</th>
+                    <th>内存使用</th>
+                    <th>内存碎片</th>
+                    <th>key总量</th>
+                    <th>每秒执行</th>
+                    <th>每秒过期</th>
+                    <th>每秒删除</th>
+                    <th>每秒命中</th>
+                    <th>每秒未命中</th>
+                    <th>AOF文件大小</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="text-info">Cache-Server信息</h3>
+            <table id="stat" class="table table-striped table-bordered">
+            </table>
+        </div>
+        <div class="col-md-8">
+            <h3 class="text-info">执行命令</h3>
+                <form class="form-inline">
+                  <div class="form-group">
+                    <label for="command">命令</label>
+                    <select class="form-control" id="command">
+                        <option value="get">GET</option>
+                        <option value="hget">HGET</option>
+                        <option value="hkeys">HKEYS</option>
+                        <option value="keys">KEYS</option>
+                        <option value="lrange">LRANGE</option>
+                        <option value="llen">LLEN</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="args">参数</label>
+                    <input class="form-control" id="args" placeholder="多个参数使用,分割">
+                  </div>
+                  <button type="submit" class="btn btn-success">执行</button>
+                </form>
+            <div id="command_result" style="height: 311px;color: #008800;overflow-y:auto;" class="well">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
